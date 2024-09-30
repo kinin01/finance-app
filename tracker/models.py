@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import TransactionQuerySet
+from django import template
+
+register = template.Library()
 
 class User(AbstractUser):
     pass

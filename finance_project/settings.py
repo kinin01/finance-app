@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     
     # external apps
+    "template_partials",
     "django_extensions",
     "debug_toolbar",
     "widget_tweaks",
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'django_htmx',
-    'template_partials',
+    
     
     # project apps
     "tracker",
@@ -61,6 +62,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "finance_project.urls"
 
+default_loaders = [
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
+]
+cached_loaders = [("django.template.loaders.cached.Loader", default_loaders)]
+partial_loaders = [("template_partials.loader.Loader", cached_loaders)]
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -73,6 +81,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            
         },
     },
 ]
